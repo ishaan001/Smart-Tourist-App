@@ -1,0 +1,16 @@
+package DB_Hotel_ins_del;
+import config.DBConnection;
+import java.sql.*;
+import javax.sql.*;
+
+import HotelBean.AddHotel;
+import HotelBean.AddHotel.*;
+
+
+public class A_hotel_DB {
+	public static String AddHotelInDB(AddHotel ah1)
+	{
+		
+		return "hello";
+	}
+}

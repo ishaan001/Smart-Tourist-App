@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Smart City App</title>
+</head>
+<body>
+<script>
+function validateMAIN(){  
+var name=document.f1.uname.value;  
+var password=document.f1.pass.value;
+   
+  
+if (name==null || name==""){  
+  alert("Name can't be blank");  
+  return false;  
+}   
+else if(password==null || password==""){
+	alert("password field can't be blank");
+	return false;;
+}
+}  
+</script>
+<form name="f1" method="post" action="Login_code.jsp" onsubmit="return validateMAIN()">
+ <blockquote>	
+   <h1><strong> <center>LOGIN SMART APP</center></strong></h1>
+ </blockquote>
+ <table width="392" height="236" align="center" cellspacing="2">
+   <tr>
+    <td width="195" align="center" bgcolor="#FFFFFF"> <h1><strong> User Name:</strong></h1></td>
+    <td width="181"><input type="text" name="uname" required></td>
+  </tr>
+  <tr>
+    <td align="center"><h1><strong>Password :</strong></h1></td>
+    <td><input type="password" name="pass" required></td>
+  </tr>
+  <tr>
+  	<td>&nbsp;</td>
+    <td><input type=submit value="Submit"></td>
+  </tr>
+  <tr>
+  	<td>&nbsp;</td>
+    <td><pre><a href="Register_smartApp.html"><strong>NEW USER</strong></a></pre></td>
+  </tr>
+  <tr>
+  	<td>&nbsp;</td>
+    <td><pre><a href="Forget_pass_SmartApp.html"><strong>FORGOT PASSWORD</strong></a></pre></td>
+  </tr>
+ </table>
+</form>
+
+<br>
+<br><br>
+&nbsp;
+
+</body>
+</html>

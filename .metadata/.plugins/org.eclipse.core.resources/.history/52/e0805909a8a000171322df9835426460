@@ -1,0 +1,73 @@
+package DB_user_ins_del;
+import config.DBConnection;
+import java.sql.*;
+import Bean.UserBean;
+import javax.sql.*;
+
+public class Profile {
+	public static String addUSER(UserBean ub1)
+	{
+		int i=0;
+		String s="success";
+		Connection con=DBConnection.getConnection();
+		try {
+				PreparedStatement ps=con.prepareStatement("insert into loginDetail values(?,?,?,?,?,?,?,?,?,?)");
+				ps.setString(1,ub1.getUsername());
+				ps.setInt(2, ub1.getAge());
+				ps.setString(3, ub1.getGender());
+				ps.setString(4, ub1.getCity());
+				ps.setString(5,ub1.getState());
+				ps.setString(6,ub1.getCountry());
+				ps.setString(7,ub1.getPass());
+				ps.setString(8,ub1.getEmail());
+				ps.setString(9,ub1.getType());
+				ps.setInt(10,ub1.getPin());
+				i=ps.executeUpdate();
+			}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		if(i>0)
+		{
+			return s;
+		}
+		else
+		{
+			return "Error SOMEWHERE";
+		}
+		
+	}
+	public static String searchUSER(UserBean ub2)
+	{
+		Boolean flag=false;
+		String sent="Error Somewhere";
+		Connection con=DBConnection.getConnection();
+		String uemail=null;
+		Connection con1=DBConnection.getConnection();
+		String uname=ub2.getUsername();
+		try {
+			Statement st = con1.createStatement();
+			ResultSet rs=st.executeQuery("select email from logindetail where name='"+uname+"'");
+			while(rs.next())
+			{
+				uemail=rs.getString(8);
+				flag=true;
+			}
+		}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		if(flag)
+		{
+			return uemail;
+		}
+		else
+		{
+			return sent;
+		}
+		
+	}
+
+}

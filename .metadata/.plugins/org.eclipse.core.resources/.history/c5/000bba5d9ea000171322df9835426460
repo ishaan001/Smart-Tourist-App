@@ -1,0 +1,5 @@
+package Mail.copy;
+
+public class MailForgotPass {
+
+}

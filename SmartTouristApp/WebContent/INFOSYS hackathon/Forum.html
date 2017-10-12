@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bucket List: Live chat forum</title>
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="jq/jquery.mobile-1.4.5.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="jq/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <script src="paho-mqtt.js"></script>
+        <script src="paho-mqtt-min.js"></script>
+        <script type="text/javascript" src="Script.js"></script>
+        <style type="text/css">
+        	.jumbotron{
+        		margin-left: 5%;
+        		margin-right: 5%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        	}
+        	.you{
+        		margin-top: 2%;
+        		margin-left: 0%;
+        		margin-right: 40%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        		padding-bottom: 0%;
+        		padding-top: 2%;
+        		margin-bottom: 0%;
+        		text-align: left;
+        		color: white;
+        		background-color: rgba(0, 188, 212, 0.5);
+        	}
+        	.querry{
+        		margin-top: 0%;
+        		margin-left: 0%;
+        		margin-right: 0%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        		padding-bottom: 0%;
+        		padding-top: 2%;
+        		text-align: left;
+        		color: white;
+        		background-color: black;
+        	}
+        	.reply{
+        		margin-top: 2%;
+        		margin-left: 40%;
+        		margin-right: 0%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        		padding-bottom: 0%;
+        		padding-top: 2%;
+        		text-align: left;
+        		color: white;
+        		background-color: rgba(232, 7, 168, 0.52);
+        	}
+        	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+       			background-color: rgba(255, 255, 255, 0.03) /*{a-page-background-color}*/;
+    			border-color: rgba(198, 15, 15, 0) /*{a-page-border}*/;
+    			color: rgba(51, 51, 51, 0) /*{a-page-color}*/;
+    			text-shadow: 0 /*{a-page-shadow-x}*/ 1px /*{a-page-shadow-y}*/ 0 /*{a-page-shadow-radius}*/ #f3f3f3 /*{a-page-shadow-color}*/;
+    			background: url(login.jpg);
+    			background-attachment:center;
+                background-size:200% 100%; 
+                background-size:cover;
+                background-attachment:fixed; 
+			}
+			.ui-header{
+        		position: fixed;
+    			border-width: 1px 0;
+    			padding: 10px;
+    			text-align: center;
+    			font-family: inherit;
+    			font-size: 20px;
+    			margin-left: 0px
+			}
+			.ui-footer{
+				position: fixed;
+				background-color: #00bcd4;
+    			padding: 15px;
+			}
+			body{
+				background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, rgba(167, 167, 167, 0)), color-stop(0.51, rgba(96, 125, 139, 0.03)) );
+			}
+			.ui-input-text, .ui-input-search {
+    			margin: 1;
+    			margin-left: 10%;
+    			margin-right: 10%;
+    			border-width: 1px;
+    			border-style: solid;
+			}
+        </style>
+  
+</head>
+<body>
+	<div data-role="page" class="ui-mobile-viewport" id="Login">
+     	<div data-role="header" align="center" style="position:initial; background-color: #00BCD4;color: white;font-weight: inherit;">
+     	<br><br><br>
+     		<label>Post your query</label>
+     	</div>
+
+     	<div data-role="main" img-src="img/login.jpg" id="display">
+     			
+
+     	</div>
+
+     	<div data-role="footer" data-position="fixed" style="background-color: #00BCD4;color: white"">
+     		
+     		<div align="center">
+     			<div  class="row">
+     			<input class="" style="width: 60%" id="msg" placeholder="press Enter to reply">
+     			<button class="btn btn-primary" id="querry">Add querry</button>
+     		</div>
+     		</div>
+
+		</div>
+     </div> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+package DB_Hotel_ins_del;
+import config.DBConnection;
+import java.sql.*;
+import javax.sql.*;
+
+import HotelBean.AddHotel;
+import HotelBean.AddHotel.*;
+
+
+public class A_hotel_DB {
+	
+	public static String AddHotelInDB(AddHotel ah1)
+	{
+		int i=0;
+		Connection con=DBConnection.getConnection();
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("insert into Hotels values(?,?,?,?,?,?,?,?,?,?,?)");
+			ps.setString(1,ah1.getHotelid());
+			ps.setString(2,ah1.getHotelname());
+			ps.setString(3,ah1.getRent());
+			ps.setString(4,ah1.getAddress());
+			ps.setString(5,ah1.getCity());
+			ps.setString(6,ah1.getState());
+			ps.setString(7,ah1.getCountry());
+			ps.setInt(8,ah1.getRating());
+			ps.setLong(9,ah1.getPn());
+			ps.setString(10,ah1.getEmail());
+			ps.setInt(11,ah1.getPin());
+			i=ps.executeUpdate();
+		}
+	catch(Exception e)
+	{
+		System.out.println(e);
+		e.printStackTrace();
+		
+	}
+		if(i>0) {
+			return "success";
+			}
+		else {
+			return "failed";
+		}
+			
+	}
+	public static String Del_hotelDB(AddHotel ah3)
+	{
+		int i=0;
+		Connection con=DBConnection.getConnection();
+		String hID=ah3.getHotelid();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs=st.executeQuery("delete from hotels where hotelid='"+hID+"'");
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		
+
+		return "success";
+	}
+}

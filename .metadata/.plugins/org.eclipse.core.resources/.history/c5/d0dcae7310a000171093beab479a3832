@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+function validateform()
+{  
+	var name=document.f2.uname.value;  
+	var password=document.f2.pass.value;
+	var cpass=document.f2.cpass.value;  
+  
+	if (name==null || name=="")
+	{  
+  		alert("Name can't be blank");  
+  		return false;  
+  	}
+  	else if(password.length<6)
+  	{  
+  		alert("Password must be at least 6 characters long.");  
+  		return false;  
+  	}
+  	else if(password != cpass)
+  	{
+  		alert("Password must be equal to confrim password");  
+  		return false;  
+  	}  
+}  
+ 
+
+</script>
+<center>
+<form name="f2" method="post" action="Create.jsp" onSubmit="return validateform()" >
+  <table width="448" border="0">
+    <tr>
+    <th scope="row"><p>ENTER NAME:</p></th>
+    <td><input type=text name="uname" required></td>
+  </tr>
+  <tr>
+    <th scope="row">AGE :</th>
+    <td><input type=text name="uage" required></td>
+  </tr>
+  <tr>
+    <th scope="row">GENDER :</th>
+    <td><select name="d1" size=1>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select></td>
+  </tr>
+  <tr>
+    <th scope="row">E-Mail :</th>
+    <td><input type="text" name="email"></td>
+  </tr>
+  <tr>
+    <th scope="row">Address:</th>
+    <td><input type="text" name="addr"></td>
+  </tr>
+  <tr>
+    <th scope="row">Select Country :</th>
+    <td><select name="d2" size=1>
+      <option value="India">India</option>
+      <option value="Usa">Usa</option>
+      <option value="France">France</option>
+    </select></td>
+  </tr>
+  <tr>
+    <th scope="row">Select State :</th>
+    <td><select name="d3" size=1>
+      <option value="Punjab">Punjab</option>
+      <option value="Rajasthan">Rajasthan</option>
+      <option value="Haryana">Haryana</option>
+    </select></td>
+  </tr>
+  <tr>
+    <th scope="row">Select city :</th>
+    <td><select name="d4" size=1>
+      <option value="chd">Chandigarh</option>
+      <option value="mumbai">mumbai</option>
+      <option value="amb">ambala</option>
+    </select></td>
+  </tr>
+  <tr>
+    <th scope="row">Type :</th>
+    <td><select name="d5" size=1>
+      <option value="user">User</option>
+      <option value="BP">Business Partner</option>
+    </select></td>
+  </tr>
+  <tr>
+    <th scope="row">ENTER PASSWORD:</th>
+    <td><input type="password" name="pass" required></td>
+  </tr>
+  <tr>
+    <th scope="row">ENTER CONFIRM PASSWORD:</th>
+    <td><input type="password" name="cpass" required></td>
+  </tr>
+  <tr>
+    <th scope="row"><br></th>
+    <td><input type=submit value="Register"></td>
+  </tr>
+</table>
+  <br>
+</form>
+</center>
+</body>
+</html>

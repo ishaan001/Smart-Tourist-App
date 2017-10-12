@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Sam</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="jq/jquery.mobile-1.4.5.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="jq/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <style type="text/css">
+        	.you{
+        		margin-top: 2%;
+        		margin-left: 0%;
+        		margin-right: 40%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        		padding-bottom: 0%;
+        		padding-top: 2%;
+        		text-align: left;
+        		color: white;
+        		background-color: rgba(0, 188, 212, 0.5);
+        	}
+        	.sam{
+        		margin-top: 2%;
+        		margin-left: 40%;
+        		margin-right: 0%;
+        		padding-left: 5%;
+        		padding-right: 5%;
+        		padding-bottom: 0%;
+        		padding-top: 2%;
+        		text-align: left;
+        		color: white;
+        		background-color: rgba(232, 7, 168, 0.52);
+        	}
+        	small{
+        		text-align: left;
+        	}
+        	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+       			background-color: rgba(255, 255, 255, 0.03) /*{a-page-background-color}*/;
+    			border-color: rgba(198, 15, 15, 0) /*{a-page-border}*/;
+    			color: rgba(51, 51, 51, 0) /*{a-page-color}*/;
+    			text-shadow: 0 /*{a-page-shadow-x}*/ 1px /*{a-page-shadow-y}*/ 0 /*{a-page-shadow-radius}*/ #f3f3f3 /*{a-page-shadow-color}*/;
+    			background: url(login.jpg);
+    			background-attachment:center;
+                background-size:200% 100%; 
+                background-size:cover;
+                background-attachment:fixed; 
+			}
+			.ui-header{
+        		position: fixed;
+    			border-width: 1px 0;
+    			padding: 10px;
+    			text-align: center;
+    			font-family: inherit;
+    			font-size: 20px;
+    			margin-left: 0px
+			}
+			.ui-footer{
+				position: fixed;
+				background-color: #00bcd4;
+    			padding: 15px;
+			}
+			body{
+				background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, rgba(167, 167, 167, 0)), color-stop(0.51, rgba(96, 125, 139, 0.03)) );
+			}
+        </style>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+
+
+
+		var accessToken = "11023d9c9b00488a80e63d89c574fe69";
+
+		var baseUrl = "https://api.api.ai/v1/";
+
+		var conversation = [];
+
+		$(document).ready(function() {
+
+			$("#msg").keypress(function(event) {
+
+				if (event.which == 13) {
+
+					event.preventDefault();
+
+					send();
+
+				}
+
+			});
+
+			$("#rec").click(function(event) {
+
+				switchRecognition();
+
+			});
+
+		});
+
+
+
+		var recognition;
+
+
+
+		function startRecognition() {
+
+			recognition = new webkitSpeechRecognition();
+
+			recognition.onstart = function(event) {
+
+				updateRec();
+
+			};
+
+			recognition.onresult = function(event) {
+
+				var text = "";
+
+			    for (var i = event.resultIndex; i < event.results.length; ++i) {
+
+			    	text += event.results[i][0].transcript;
+
+			    }
+
+			    setInput(text);
+
+				stopRecognition();
+
+			};
+
+			recognition.onend = function() {
+
+				stopRecognition();
+
+			};
+
+			recognition.lang = "en-US";
+
+			recognition.start();
+
+		}
+
+	
+
+		function stopRecognition() {
+
+			if (recognition) {
+
+				recognition.stop();
+
+				recognition = null;
+
+			}
+
+			updateRec();
+
+		}
+
+
+
+		function switchRecognition() {
+
+			if (recognition) {
+
+				stopRecognition();
+
+			} else {
+
+				startRecognition();
+
+			}
+
+		}
+
+
+
+		function setInput(text) {
+
+			$("#msg").val(text);
+
+			send();
+
+		}
+
+
+
+		function updateRec() {
+
+			$("#rec").text(recognition ? "Stop" : "Speak");
+
+		}
+
+
+
+		function send() {
+
+			
+			var text = $("#msg").val();
+			console.log(text);
+			// conversation.push("Me:  " + text + '\r\n');
+			$('#display').append(
+  				$('<div/>')
+  					.attr("class","you")
+    				.addClass("jumbotron")
+    				.append("<label> You : "+text+"</label><br>")
+    				); 
+			$('html,body').animate({ scrollTop: 9999 }, 'slow');
+			//$('#response').append("\n\n"+"You : "+text);
+
+
+			$.ajax({
+
+				type: "POST",
+
+				url: baseUrl + "query?v=20150910",
+
+				contentType: "application/json; charset=utf-8",
+
+				dataType: "json",
+
+				headers: {
+
+					"Authorization": "Bearer " + accessToken
+
+				},
+
+				data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+
+
+
+				success: function(data) {
+
+					setResponse(JSON.stringify(data, undefined, 2));
+
+				},
+
+				error: function() {
+
+					setResponse("Internal Server Error");
+
+				}
+
+			});
+
+			setResponse("Loading...");
+
+		}
+
+
+
+		function setResponse(val) {
+
+			var response = JSON.parse(val);
+		
+			// alert(response.result.fulfillment.speech);
+			var repo1 = response.result.fulfillment.speech;
+			 // conversation.push("\n"+"Sam: " +repo1 + '\r\n' +"\n");
+
+			//$("#response2").append("\n\n"+"Sam : "+repo1);
+
+			 // $("#response").text(val);
+			 $('#display').append(
+  				$('<div/>')
+  					.attr("class","sam")
+    				.addClass("jumbotron")
+    				.append("<label> Sam : "+repo1+"</label><br>")
+    				);
+			 display();
+       
+		}
+		function display()
+    {
+        document.getElementById("msg").value = "";
+    }
+
+
+
+
+	</script>
+
+	<style type="text/css">
+
+		body { width: 800px; margin: 0 auto; text-align: center; margin-top: 20px; }
+
+		
+
+		input { width: 300px;
+				 background-color: #126077;
+
+			      border: 1px solid #3F7F93;
+
+			      color: #A6CAE6;
+
+			      font-family: "Titillium Web";
+
+			      font-size: 20px;
+
+			      line-height: 43px;
+
+			      padding: 0 0.75em;
+
+			      width: 300px;
+
+			      -webkit-transition: all 0.35s ease-in;
+			       -moz-border-radius: 15px;
+					 border-radius: 15px;
+					    border:solid 1px black;
+					    padding:5px;
+
+
+			 }
+			 .ui-input-text, .ui-input-search {
+    margin: 1;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-width: 1px;
+    border-style: solid;
+}
+
+		button { width: 100px; 
+
+				 background-color: #126178;
+
+			      border: 2px solid #549EAF;
+
+			      color: #549EAF;
+
+			      cursor: pointer;
+
+			      display: inline-block;
+
+			      font-family: "Titillium Web";
+
+			      font-size: 20px;
+
+			      line-height: 43px;
+
+			      padding: 0 0.75em;
+
+			      text-align: center;
+
+			      text-transform: uppercase;
+
+			      margin-left: 30px;
+
+			      -webkit-transition: all 0.35s ease-in;
+			      -webkit-transition: all 0.35s ease-in;
+			       -moz-border-radius: 15px;
+					 border-radius: 15px;
+					    border:solid 1px black;
+					    padding:5px;
+				}
+
+		textarea { width: 100%;
+
+			      background-color: #05F9D0;
+
+			      border: 1px solid #122435;
+
+			      color: #606B88;
+
+			      padding: 0.5em;
+
+			      -webkit-transition: all 0.35s ease-in;
+			      -webkit-transition: all 0.35s ease-in;
+			       -moz-border-radius: 15px;
+					 border-radius: 15px;
+					    border:solid 1px black;
+					    padding:5px;
+				 }
+		    .col
+				{
+			    float: left;
+			    width: 50%;
+			    font-size: 24px;
+			    padding: 1px;
+			    margin-top: 100px;
+				}
+
+	</style>
+
+</head>
+
+<body>
+	<div data-role="page" class="ui-mobile-viewport" id="Login">
+     	<div data-role="header" align="center" style="position:initial; background-color: #00BCD4;color: white;font-weight: inherit;">
+     	<br><br><br>
+     		<label>SAM</label>
+     	</div>
+
+     	<div data-role="main" img-src="img/login.jpg" id="display">
+     			
+
+     	</div>
+
+     	<div data-role="footer" data-position="fixed" style="background-color: #00BCD4;color: white"">
+     		
+     		<div align="center">
+     			<div >
+     			<input class="" style="width: 50%" id="msg">
+     			<!-- <button href="" class="ui-btn ui-btn-b ui-btn-icon-notext ui-icon-edit ui-corner-all" style="background-color:#00BCD4;color: white;border-color:#00BCD4" id="post"></button> -->
+     		</div>
+     		</div>
+
+		</div>
+     </div>
+</body>
+
+</html>

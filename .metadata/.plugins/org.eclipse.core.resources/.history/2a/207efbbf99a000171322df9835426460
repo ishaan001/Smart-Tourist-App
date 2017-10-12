@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<center>
+	<h1>SMART CITY APP</h1>
+	<h2>FORGOT PASSWORD MODULE</h2>
+	<h3>On providing valid user name press submit and password will be sent to your EMAIL ID that you have provided </h3>
+</center>
+<form name="f2" method="post" action=".jsp" onSubmit="return validateform()" >
+   <center>
+    ENTER NAME: <input type=text name="uname" required>
+    <input type=submit value="Submit">
+    </center>
+</form>
+    
+	
+
+</body>
+</html>

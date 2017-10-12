@@ -1,0 +1,84 @@
+package HotelBean;
+
+public class AddHotel {
+	private String hotelid;
+	private String hotelname;
+	private String rent;
+	private String address;
+	private String city;
+	private String state;
+	private String country;
+	private long pn;
+	private String email;
+	private int pin;
+	private int rating;
+	public String getHotelid() {
+		return hotelid;
+	}
+	public void setHotelid(String hotelid) {
+		this.hotelid = hotelid;
+	}
+	public String getHotelname() {
+		return hotelname;
+	}
+	public void setHotelname(String hotelname) {
+		this.hotelname = hotelname;
+	}
+	public String getRent() {
+		return rent;
+	}
+	public void setRent(String rent) {
+		this.rent = rent;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public int getPn() {
+		return pn;
+	}
+	public void setPn(long pn) {
+		this.pn = pn;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getPin() {
+		return pin;
+	}
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
+	
+
+}
