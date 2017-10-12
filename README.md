@@ -27,7 +27,7 @@
   ```MYSQL```<br>
   
 
-Developed by - ISHAAN VEER DADHWAL :+1:
-             - SHEKAHR SINGH :+1:
-             - HARDIK KHURANA :+1:
-             - DEVVRAT KALIA :+1:
+Developed by - ISHAAN VEER DADHWAL
+             ,SHEKAHR SINGH 
+             , HARDIK KHURANA 
+             , DEVVRAT KALIA 
