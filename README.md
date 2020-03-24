@@ -28,6 +28,6 @@
   
 
 Developed by - ISHAAN VEER DADHWAL
-             ,SHEKAHR SINGH 
+             ,SHEKHAR SINGH 
              , HARDIK KHURANA 
              , DEVVRAT KALIA 
